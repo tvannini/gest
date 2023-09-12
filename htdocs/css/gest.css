@@ -1,0 +1,66 @@
+*::-moz-selection {
+    color: #eeeeee;
+    background-color: #73994e;
+    }
+
+*::selection {
+    color: #eeeeee;
+    background-color: #73994e;
+    }
+
+
+/* ==================== STANDARD CONTROLS OVERRIDE ================== */
+
+.o2_tab_sele {
+    background: #73994e;
+    line-height: 20px;
+    vertical-align: middle;
+    padding: 0 3px 0 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    border-left: 1px dotted #e0ddd9;
+    }
+
+.o2_tab_sele * {
+    color: #eeeeee;
+    }
+
+.red_row * {
+    color: #eeeeee;
+    }
+
+/* ============================== EXTRA ============================= */
+.report {
+    background-color: transparent;
+    overflow-y: auto;
+    padding: 20px;
+    }
+
+.report table {
+    width: 100%;
+    border-collapse: collapse;
+    }
+
+.report td {
+    padding-top: 10px;
+    }
+
+.report thead tr {
+    border: 1px solid #BDB5AE;
+    }
+
+.report th {
+    font-weight: bold;
+    font-size: 110%;
+    line-height: 24px;
+    }
+
+.report td:first-child {
+    text-align: left;
+    padding-left: 10px;
+    }
+
+.report td:not(:first-child) {
+    text-align: right;
+    padding-right: 20px;
+    }

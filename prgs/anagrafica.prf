@@ -1,0 +1,404 @@
+<?php
+
+function anagrafica§§prg§_§var_def(&$task_prg§_§var) {
+	$task_prg§_§var->righe_vis = 1;
+	$task_prg§_§var->definisci("conferma", "_o2logical");
+	$task_prg§_§var->definisci("filtro_nominativo", "_o2alpha");
+	$task_prg§_§var->definisci("mostra_dettaglio", "_o2logical");
+		}
+
+function anagrafica§§anagrafica_def(&$task_anagrafica, $_o2viewalias = "") {
+	$task_anagrafica->righe_vis = 50;
+
+	$task_anagrafica->usa_file("anagrafica","anagrafica","nominativo",null,null);
+
+	$task_anagrafica->usa("codice","anagrafica","codice",null,null,null,null);
+	$task_anagrafica->usa("nominativo","anagrafica","nominativo",null,null,null,"anagrafica_exp_13()");
+	$task_anagrafica->usa("indirizzo","anagrafica","indirizzo",null,null,null,null);
+	$task_anagrafica->usa("n_civico","anagrafica","n_civico",null,null,null,null);
+	$task_anagrafica->usa("cap","anagrafica","cap",null,null,null,null);
+	$task_anagrafica->usa("localita","anagrafica","localita",null,null,null,null);
+	$task_anagrafica->usa("provincia","anagrafica","provincia",null,null,null,null);
+	$task_anagrafica->usa("email","anagrafica","email",null,null,null,null);
+	$task_anagrafica->usa("pec","anagrafica","pec",null,null,null,null);
+	$task_anagrafica->usa("p_iva","anagrafica","p_iva",null,null,null,null);
+	$task_anagrafica->usa("cod_fiscale","anagrafica","cod_fiscale",null,null,null,null);
+	$task_anagrafica->calcola("localita_prov","txt_medio","anagrafica_exp_3()",null,null,null,null);
+	$task_anagrafica->usa("cod_destinatario","anagrafica","cod_destinatario",null,null,null,null);
+	$task_anagrafica->usa("dismesso","anagrafica","dismesso",null,null,null,null);
+}
+
+function anagrafica§§nuovo_codice_def(&$task_nuovo_codice, $_o2viewalias = "") {
+	$task_nuovo_codice->righe_vis = 10;
+
+	$task_nuovo_codice->usa_file("anagrafica","anagrafica","codice",null,null);
+
+	$task_nuovo_codice->usa("codice","anagrafica","codice",null,null,null,null);
+}
+function anagrafica§§anagrafica_detail_form_def(&$form_anagrafica_detail) {
+	$form_anagrafica_detail->x(279);
+	$form_anagrafica_detail->y(100);
+	$form_anagrafica_detail->larghezza(440);
+	$form_anagrafica_detail->altezza(430);
+	$form_anagrafica_detail->align_o("Center");
+	$form_anagrafica_detail->titolo("Anagrafica");
+	$form_anagrafica_detail->css_body(" open_body");
+	$form_anagrafica_detail->close_action("anagrafica_detail_off");
+	$ctrl_o2label10 = &$form_anagrafica_detail->ctrldef("o2label10", "label", "", "", "");
+		$ctrl_o2label10->x(30);
+		$ctrl_o2label10->y(260);
+		$ctrl_o2label10->larghezza(80);
+		$ctrl_o2label10->altezza(20);
+		$ctrl_o2label10->label("PEC:");
+	$ctrl_o2label11 = &$form_anagrafica_detail->ctrldef("o2label11", "label", "", "", "");
+		$ctrl_o2label11->x(30);
+		$ctrl_o2label11->y(200);
+		$ctrl_o2label11->larghezza(80);
+		$ctrl_o2label11->altezza(20);
+		$ctrl_o2label11->label("Partita IVA:");
+	$ctrl_o2label5 = &$form_anagrafica_detail->ctrldef("o2label5", "label", "", "", "");
+		$ctrl_o2label5->x(30);
+		$ctrl_o2label5->y(180);
+		$ctrl_o2label5->larghezza(80);
+		$ctrl_o2label5->altezza(20);
+		$ctrl_o2label5->label("Cod. fiscale:");
+	$ctrl_o2label9 = &$form_anagrafica_detail->ctrldef("o2label9", "label", "", "", "");
+		$ctrl_o2label9->x(30);
+		$ctrl_o2label9->y(240);
+		$ctrl_o2label9->larghezza(80);
+		$ctrl_o2label9->altezza(20);
+		$ctrl_o2label9->label("Email:");
+	$ctrl_o2label8 = &$form_anagrafica_detail->ctrldef("o2label8", "label", "", "", "");
+		$ctrl_o2label8->x(403);
+		$ctrl_o2label8->y(140);
+		$ctrl_o2label8->larghezza(5);
+		$ctrl_o2label8->altezza(20);
+		$ctrl_o2label8->label(")");
+	$ctrl_o2label3 = &$form_anagrafica_detail->ctrldef("o2label3", "label", "", "", "");
+		$ctrl_o2label3->x(30);
+		$ctrl_o2label3->y(80);
+		$ctrl_o2label3->larghezza(80);
+		$ctrl_o2label3->altezza(20);
+		$ctrl_o2label3->label("Nominativo:");
+	$ctrl_o2label7 = &$form_anagrafica_detail->ctrldef("o2label7", "label", "", "", "");
+		$ctrl_o2label7->x(363);
+		$ctrl_o2label7->y(140);
+		$ctrl_o2label7->larghezza(5);
+		$ctrl_o2label7->altezza(20);
+		$ctrl_o2label7->label("(");
+	$ctrl_o2label4 = &$form_anagrafica_detail->ctrldef("o2label4", "label", "", "", "");
+		$ctrl_o2label4->x(30);
+		$ctrl_o2label4->y(120);
+		$ctrl_o2label4->larghezza(80);
+		$ctrl_o2label4->altezza(20);
+		$ctrl_o2label4->label("Indirizzo:");
+	$ctrl_o2label2 = &$form_anagrafica_detail->ctrldef("o2label2", "label", "", "", "");
+		$ctrl_o2label2->x(30);
+		$ctrl_o2label2->y(60);
+		$ctrl_o2label2->larghezza(80);
+		$ctrl_o2label2->altezza(20);
+		$ctrl_o2label2->label("Codice:");
+	$ctrl_o2separator2 = &$form_anagrafica_detail->ctrldef("o2separator2", "line", "", "", "");
+		$ctrl_o2separator2->x(30);
+		$ctrl_o2separator2->y(330);
+		$ctrl_o2separator2->larghezza(380);
+		$ctrl_o2separator2->altezza(2);
+		$ctrl_o2separator2->expand("H");
+	$ctrl_o2label6 = &$form_anagrafica_detail->ctrldef("o2label6", "label", "", "", "");
+		$ctrl_o2label6->x(30);
+		$ctrl_o2label6->y(140);
+		$ctrl_o2label6->larghezza(80);
+		$ctrl_o2label6->altezza(20);
+		$ctrl_o2label6->label("Località:");
+	$ctrl_o2label12 = &$form_anagrafica_detail->ctrldef("o2label12", "label", "", "", "");
+		$ctrl_o2label12->x(30);
+		$ctrl_o2label12->y(300);
+		$ctrl_o2label12->larghezza(80);
+		$ctrl_o2label12->altezza(20);
+		$ctrl_o2label12->label("Cod. dest.:");
+	$ctrl_o2label13 = &$form_anagrafica_detail->ctrldef("o2label13", "label", "", "", "");
+		$ctrl_o2label13->x(190);
+		$ctrl_o2label13->y(60);
+		$ctrl_o2label13->larghezza(200);
+		$ctrl_o2label13->altezza(20);
+		$ctrl_o2label13->label("Dismesso (escluso da previsione):");
+	$ctrl_o2edit5 = &$form_anagrafica_detail->ctrldef("o2edit5", "edit", "", "anagrafica", "codice");
+		$ctrl_o2edit5->x(110);
+		$ctrl_o2edit5->y(60);
+		$ctrl_o2edit5->larghezza(30);
+		$ctrl_o2edit5->altezza(20);
+		$ctrl_o2edit5->modificabile(anagrafica_exp_9999());
+	$ctrl_o2edit6 = &$form_anagrafica_detail->ctrldef("o2edit6", "edit", "", "anagrafica", "nominativo");
+		$ctrl_o2edit6->x(110);
+		$ctrl_o2edit6->y(80);
+		$ctrl_o2edit6->larghezza(300);
+		$ctrl_o2edit6->altezza(20);
+		$ctrl_o2edit6->expand("H");
+	$ctrl_o2edit7 = &$form_anagrafica_detail->ctrldef("o2edit7", "edit", "", "anagrafica", "indirizzo");
+		$ctrl_o2edit7->x(110);
+		$ctrl_o2edit7->y(120);
+		$ctrl_o2edit7->larghezza(250);
+		$ctrl_o2edit7->altezza(20);
+		$ctrl_o2edit7->expand("H");
+	$ctrl_o2edit8 = &$form_anagrafica_detail->ctrldef("o2edit8", "edit", "", "anagrafica", "n_civico");
+		$ctrl_o2edit8->x(360);
+		$ctrl_o2edit8->y(120);
+		$ctrl_o2edit8->larghezza(50);
+		$ctrl_o2edit8->altezza(20);
+	$ctrl_o2edit9 = &$form_anagrafica_detail->ctrldef("o2edit9", "edit", "", "anagrafica", "localita");
+		$ctrl_o2edit9->x(160);
+		$ctrl_o2edit9->y(140);
+		$ctrl_o2edit9->larghezza(200);
+		$ctrl_o2edit9->altezza(20);
+		$ctrl_o2edit9->expand("H");
+	$ctrl_o2edit10 = &$form_anagrafica_detail->ctrldef("o2edit10", "edit", "", "anagrafica", "provincia");
+		$ctrl_o2edit10->x(370);
+		$ctrl_o2edit10->y(140);
+		$ctrl_o2edit10->larghezza(30);
+		$ctrl_o2edit10->altezza(20);
+	$ctrl_o2edit13 = &$form_anagrafica_detail->ctrldef("o2edit13", "edit", "", "anagrafica", "cod_fiscale");
+		$ctrl_o2edit13->x(110);
+		$ctrl_o2edit13->y(180);
+		$ctrl_o2edit13->larghezza(150);
+		$ctrl_o2edit13->altezza(20);
+	$ctrl_o2edit14 = &$form_anagrafica_detail->ctrldef("o2edit14", "edit", "", "anagrafica", "p_iva");
+		$ctrl_o2edit14->x(110);
+		$ctrl_o2edit14->y(200);
+		$ctrl_o2edit14->larghezza(150);
+		$ctrl_o2edit14->altezza(20);
+	$ctrl_o2edit11 = &$form_anagrafica_detail->ctrldef("o2edit11", "edit", "", "anagrafica", "email");
+		$ctrl_o2edit11->x(110);
+		$ctrl_o2edit11->y(240);
+		$ctrl_o2edit11->larghezza(300);
+		$ctrl_o2edit11->altezza(20);
+		$ctrl_o2edit11->expand("H");
+	$ctrl_o2edit12 = &$form_anagrafica_detail->ctrldef("o2edit12", "edit", "", "anagrafica", "pec");
+		$ctrl_o2edit12->x(110);
+		$ctrl_o2edit12->y(260);
+		$ctrl_o2edit12->larghezza(300);
+		$ctrl_o2edit12->altezza(20);
+		$ctrl_o2edit12->expand("H");
+	$ctrl_o2button2 = &$form_anagrafica_detail->ctrldef("o2button2", "button", "", "", "");
+		$ctrl_o2button2->x(320);
+		$ctrl_o2button2->y(350);
+		$ctrl_o2button2->larghezza(90);
+		$ctrl_o2button2->altezza(30);
+		$ctrl_o2button2->azione("anagrafica_detail_off");
+		$ctrl_o2button2->label("&Chiudi");
+	$ctrl_o2dbnavigator3 = &$form_anagrafica_detail->ctrldef("o2dbnavigator3", "navigator", "", "anagrafica", "");
+		$ctrl_o2dbnavigator3->x(0);
+		$ctrl_o2dbnavigator3->y(0);
+		$ctrl_o2dbnavigator3->larghezza(440);
+		$ctrl_o2dbnavigator3->altezza(32);
+		$ctrl_o2dbnavigator3->expand("H");
+		$ctrl_o2dbnavigator3->css_space(anagrafica_exp_8());
+		$ctrl_o2dbnavigator3->visible_detail(anagrafica_exp_9999());
+		$ctrl_o2dbnavigator3->visible_select(anagrafica_exp_9999());
+		$ctrl_o2dbnavigator3->act_new("anagrafica_insert");
+		$ctrl_o2dbnavigator3->act_save("anagrafica_post");
+		$ctrl_o2dbnavigator3->act_del("anagrafica_delete");
+		$ctrl_o2dbnavigator3->act_undo("anagrafica_undo");
+	$ctrl_o2edit15 = &$form_anagrafica_detail->ctrldef("o2edit15", "edit", "", "anagrafica", "cod_destinatario");
+		$ctrl_o2edit15->x(110);
+		$ctrl_o2edit15->y(300);
+		$ctrl_o2edit15->larghezza(150);
+		$ctrl_o2edit15->altezza(20);
+	$ctrl_o2htmlarea3 = &$form_anagrafica_detail->ctrldef("o2htmlarea3", "htmlarea", "", "", "");
+		$ctrl_o2htmlarea3->x(150);
+		$ctrl_o2htmlarea3->y(60);
+		$ctrl_o2htmlarea3->larghezza(30);
+		$ctrl_o2htmlarea3->altezza(20);
+		$ctrl_o2htmlarea3->expand("H");
+	$ctrl_o2checkbox2 = &$form_anagrafica_detail->ctrldef("o2checkbox2", "check", "", "anagrafica", "dismesso");
+		$ctrl_o2checkbox2->x(390);
+		$ctrl_o2checkbox2->y(60);
+		$ctrl_o2checkbox2->larghezza(20);
+		$ctrl_o2checkbox2->altezza(20);
+	$ctrl_o2edit17 = &$form_anagrafica_detail->ctrldef("o2edit17", "edit", "", "anagrafica", "cap");
+		$ctrl_o2edit17->x(110);
+		$ctrl_o2edit17->y(140);
+		$ctrl_o2edit17->larghezza(50);
+		$ctrl_o2edit17->altezza(20);
+	$ctrl_o2htmlarea2 = &$form_anagrafica_detail->ctrldef("o2htmlarea2", "htmlarea", "", "", "");
+		$ctrl_o2htmlarea2->x(70);
+		$ctrl_o2htmlarea2->y(360);
+		$ctrl_o2htmlarea2->larghezza(200);
+		$ctrl_o2htmlarea2->altezza(20);
+		$ctrl_o2htmlarea2->expand("H");
+		}
+function anagrafica§§anagrafica_list_form_def(&$form_anagrafica_list) {
+	$form_anagrafica_list->x(300);
+	$form_anagrafica_list->y(100);
+	$form_anagrafica_list->larghezza(600);
+	$form_anagrafica_list->altezza(460);
+	$form_anagrafica_list->align_o("Center");
+	$form_anagrafica_list->titolo("Anagrafica");
+	$form_anagrafica_list->css_body(" open_body");
+	$ctrl_o2htmlarea4 = &$form_anagrafica_list->ctrldef("o2htmlarea4", "htmlarea", "", "", "");
+		$ctrl_o2htmlarea4->x(70);
+		$ctrl_o2htmlarea4->y(6);
+		$ctrl_o2htmlarea4->larghezza(50);
+		$ctrl_o2htmlarea4->altezza(20);
+		$ctrl_o2htmlarea4->expand("H");
+	$ctrl_o2htmlarea5 = &$form_anagrafica_list->ctrldef("o2htmlarea5", "htmlarea", "", "", "");
+		$ctrl_o2htmlarea5->x(480);
+		$ctrl_o2htmlarea5->y(6);
+		$ctrl_o2htmlarea5->larghezza(50);
+		$ctrl_o2htmlarea5->altezza(20);
+		$ctrl_o2htmlarea5->expand("H");
+	$ctrl_o2table2 = &$form_anagrafica_list->ctrldef("o2table2", "tab", "", "anagrafica", "");
+		$ctrl_o2table2->x(0);
+		$ctrl_o2table2->y(30);
+		$ctrl_o2table2->larghezza(600);
+		$ctrl_o2table2->altezza(400);
+		$ctrl_o2table2->expand("B");
+		$ctrl_o2table2->modificabile(anagrafica_exp_9999());
+	$ctrl_o2dbnavigator2 = &$form_anagrafica_list->ctrldef("o2dbnavigator2", "navigator", "", "anagrafica", "");
+		$ctrl_o2dbnavigator2->x(0);
+		$ctrl_o2dbnavigator2->y(0);
+		$ctrl_o2dbnavigator2->larghezza(600);
+		$ctrl_o2dbnavigator2->altezza(32);
+		$ctrl_o2dbnavigator2->expand("H");
+		$ctrl_o2dbnavigator2->css_space(anagrafica_exp_8());
+		$ctrl_o2dbnavigator2->visible_save(anagrafica_exp_9999());
+		$ctrl_o2dbnavigator2->visible_undo(anagrafica_exp_9999());
+		$ctrl_o2dbnavigator2->visible_select(anagrafica_exp_4());
+		$ctrl_o2dbnavigator2->act_new("anagrafica_insert");
+		$ctrl_o2dbnavigator2->act_del("anagrafica_delete");
+		$ctrl_o2dbnavigator2->act_detail("anagrafica_detail");
+		$ctrl_o2dbnavigator2->act_select("anagrafica_select");
+	$ctrl_o2edit16 = &$form_anagrafica_list->ctrldef("o2edit16", "edit", "", "prg§_§var", "filtro_nominativo");
+		$ctrl_o2edit16->x(150);
+		$ctrl_o2edit16->y(6);
+		$ctrl_o2edit16->larghezza(300);
+		$ctrl_o2edit16->altezza(20);
+		$ctrl_o2edit16->on_change(anagrafica_exp_5());
+	$ctrl_o2edit2 = &$form_anagrafica_list->ctrldef("o2edit2", "edit", "o2table2", "anagrafica", "codice");
+		$ctrl_o2edit2->x(10);
+		$ctrl_o2edit2->y(10);
+		$ctrl_o2edit2->larghezza(30);
+		$ctrl_o2edit2->altezza(20);
+		$ctrl_o2edit2->info_padre(array("01", "01", "01", "#", False, "", False, "", "", "", ""));
+	$ctrl_o2edit3 = &$form_anagrafica_list->ctrldef("o2edit3", "edit", "o2table2", "anagrafica", "nominativo");
+		$ctrl_o2edit3->x(50);
+		$ctrl_o2edit3->y(10);
+		$ctrl_o2edit3->larghezza(250);
+		$ctrl_o2edit3->altezza(20);
+		$ctrl_o2edit3->expand("H");
+		$ctrl_o2edit3->info_padre(array("01", "02", "02", "Nominativo", False, "", False, "", "", "", ""));
+	$ctrl_o2edit4 = &$form_anagrafica_list->ctrldef("o2edit4", "edit", "o2table2", "anagrafica", "localita_prov");
+		$ctrl_o2edit4->x(310);
+		$ctrl_o2edit4->y(10);
+		$ctrl_o2edit4->larghezza(250);
+		$ctrl_o2edit4->altezza(20);
+		$ctrl_o2edit4->expand("H");
+		$ctrl_o2edit4->info_padre(array("01", "03", "03", "Località", False, "", False, "", "", "", ""));
+		}
+
+function anagrafica§§anagrafica_delete_act(&$o2exe) {
+	$o2exe->s(1) && True && o2act::view("anagrafica", "C", "") && $o2exe->e();
+	} //|o2_fine_act|
+
+function anagrafica§§anagrafica_detail_act(&$o2exe) {
+	$o2exe->s(1) && True && o2act::set("prg§_§var", "mostra_dettaglio", anagrafica_exp_5()) && $o2exe->e();
+	} //|o2_fine_act|
+
+function anagrafica§§anagrafica_detail_off_act(&$o2exe) {
+	$o2exe->s(1) && (anagrafica_exp_11() || $o2exe->e()) && o2act::confirm("prg§_§var", "conferma", anagrafica_exp_10()) && $o2exe->e();
+	$o2exe->s(2) && (anagrafica_exp_12() || $o2exe->e()) && o2act::view("anagrafica", "S", "") && $o2exe->e();
+	$o2exe->s(3) && True && o2act::set("prg§_§var", "mostra_dettaglio", anagrafica_exp_9999()) && $o2exe->e();
+	} //|o2_fine_act|
+
+function anagrafica§§anagrafica_insert_act(&$o2exe) {
+	$o2exe->s(1) && True && o2act::view("anagrafica", "I", "") && $o2exe->e();
+	$o2exe->s(2) && True && o2act::view("nuovo_codice", "4", "") && $o2exe->e();
+	$o2exe->s(3) && True && o2act::set("anagrafica", "codice", anagrafica_exp_9()) && $o2exe->e();
+	$o2exe->s(4) && True && o2act::exe("anagrafica_detail", True, "") && $o2exe->e();
+	} //|o2_fine_act|
+
+function anagrafica§§anagrafica_post_act(&$o2exe) {
+	$o2exe->s(1) && True && o2act::view("anagrafica", "S", "") && $o2exe->e();
+	} //|o2_fine_act|
+
+function anagrafica§§anagrafica_select_act(&$o2exe) {
+	} //|o2_fine_act|
+
+function anagrafica§§anagrafica_undo_act(&$o2exe) {
+	$o2exe->s(1) && True && o2act::view("anagrafica", "A", "") && $o2exe->e();
+	} //|o2_fine_act|
+
+function anagrafica§§start_act(&$o2exe) {
+	$o2exe->s(1) && (anagrafica_exp_1() || $o2exe->e()) && o2act::view("anagrafica", "L", array("codice"=>anagrafica_exp_1())) && $o2exe->e();
+	$o2exe->s(2) && (anagrafica_exp_2() || $o2exe->e()) && o2act::exe("anagrafica_insert", True, "") && $o2exe->e();
+	} //|o2_fine_act|
+
+function anagrafica_exp_1() {
+	
+return (o2par(1));
+	} //|o2_fine_exp|
+
+function anagrafica_exp_2() {
+	
+return (!o2view_rec("anagrafica"));
+	} //|o2_fine_exp|
+
+function anagrafica_exp_3() {
+	
+return (o2val('anagrafica','localita').' ('.o2val('anagrafica','provincia').')');
+	} //|o2_fine_exp|
+
+function anagrafica_exp_4() {
+	
+return (count(o2app_prg()) > 1);
+	} //|o2_fine_exp|
+
+function anagrafica_exp_5() {
+	
+return (true);
+	} //|o2_fine_exp|
+
+function anagrafica_exp_6() {
+	
+return (!o2val('prg§_§var','mostra_dettaglio'));
+	} //|o2_fine_exp|
+
+function anagrafica_exp_7() {
+	
+return (o2val('prg§_§var','mostra_dettaglio'));
+	} //|o2_fine_exp|
+
+function anagrafica_exp_8() {
+	
+return ('nav_big');
+	} //|o2_fine_exp|
+
+function anagrafica_exp_9() {
+	
+return (o2val('nuovo_codice','codice') + 1);
+	} //|o2_fine_exp|
+
+function anagrafica_exp_10() {
+	
+return ("L'anagrafica è stata modificata.\nLa vuoi salvare?");
+	} //|o2_fine_exp|
+
+function anagrafica_exp_11() {
+	
+return (o2view_mod("anagrafica"));
+	} //|o2_fine_exp|
+
+function anagrafica_exp_12() {
+	
+return (o2val('prg§_§var','conferma'));
+	} //|o2_fine_exp|
+
+function anagrafica_exp_13() {
+	
+return ((o2zero('prg§_§var','filtro_nominativo') ? null : o2val('prg§_§var','filtro_nominativo')));
+	} //|o2_fine_exp|
+
+function anagrafica_exp_9999() {
+	
+return (false);
+	} //|o2_fine_exp|
+?>

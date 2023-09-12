@@ -1,0 +1,101 @@
+<?php
+
+function visore§§parametri_def(&$task_parametri, $_o2viewalias = "") {
+	$task_parametri->righe_vis = 10;
+
+	$task_parametri->usa_file("parametri","parametri","record_unico",null,null);
+
+	$task_parametri->usa("record_unico","parametri","record_unico","visore_exp_2()","visore_exp_2()",null,null);
+	$task_parametri->usa("archivio_fatture","parametri","archivio_fatture",null,null,null,null);
+}
+function visore§§visore_form_def(&$form_visore) {
+	$form_visore->x(300);
+	$form_visore->y(100);
+	$form_visore->larghezza(620);
+	$form_visore->altezza(570);
+	$form_visore->align_o("Center");
+	$form_visore->titolo(visore_exp_6());
+	$form_visore->refresh_action("resize");
+	$ctrl_bar = &$form_visore->ctrldef("bar", "label", "", "", "");
+		$ctrl_bar->x(0);
+		$ctrl_bar->y(0);
+		$ctrl_bar->larghezza(620);
+		$ctrl_bar->altezza(32);
+		$ctrl_bar->label("");
+		$ctrl_bar->css(visore_exp_3());
+	$ctrl_doc = &$form_visore->ctrldef("doc", "document", "", "", "");
+		$ctrl_doc->x(0);
+		$ctrl_doc->y(30);
+		$ctrl_doc->larghezza(620);
+		$ctrl_doc->altezza(540);
+		$ctrl_doc->path(visore_exp_1());
+	$ctrl_o2image2 = &$form_visore->ctrldef("o2image2", "img", "", "", "");
+		$ctrl_o2image2->x(20);
+		$ctrl_o2image2->y(2);
+		$ctrl_o2image2->larghezza(32);
+		$ctrl_o2image2->altezza(24);
+		$ctrl_o2image2->visibile(visore_exp_7());
+		$ctrl_o2image2->azione("consolida");
+		$ctrl_o2image2->label("Consolida");
+		$ctrl_o2image2->css(visore_exp_4());
+		$ctrl_o2image2->imgexp(visore_exp_5());
+		}
+
+function visore§§consolida_act(&$o2exe) {
+	$o2exe->s(1) && True && o2act::script(visore_exp_8()) && $o2exe->e();
+	$o2exe->s(2) && True && o2act::close()&& $o2exe->e();
+	} //|o2_fine_act|
+
+function visore§§resize_act(&$o2exe) {
+	$o2exe->s(1) && True && o2act::script(visore_exp_9()) && $o2exe->e();
+	} //|o2_fine_act|
+
+function visore_exp_1() {
+	
+return (o2_path(o2par(1)));
+	} //|o2_fine_exp|
+
+function visore_exp_2() {
+	
+return (1);
+	} //|o2_fine_exp|
+
+function visore_exp_3() {
+	
+return ('nav_big');
+	} //|o2_fine_exp|
+
+function visore_exp_4() {
+	
+return ('tool_btn');
+	} //|o2_fine_exp|
+
+function visore_exp_5() {
+	
+return ('tools/consolida.png');
+	} //|o2_fine_exp|
+
+function visore_exp_6() {
+	
+return ((o2par(2) ? 'Copia fattura' : 'Originale fattura'));
+	} //|o2_fine_exp|
+
+function visore_exp_7() {
+	
+return (!o2par(2));
+	} //|o2_fine_exp|
+
+function visore_exp_8() {
+	o2file_copy(o2par(1), o2par(3));
+o2file_copy(o2app_dir_tmp().'efatt.xml', o2par(4));
+return (true);
+	} //|o2_fine_exp|
+
+function visore_exp_9() {
+	$w = o2form_width('visore');
+o2ctrl_set_width('visore', 'bar', $w);
+o2ctrl_set_width('visore', 'doc', $w);
+o2ctrl_set_height('visore', 'doc', o2form_height('visore') - 30);
+return (true);
+	} //|o2_fine_exp|
+?>

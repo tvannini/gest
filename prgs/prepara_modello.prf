@@ -1,0 +1,26 @@
+<?php
+
+function prepara_modello§§start_act(&$o2exe) {
+	$o2exe->s(1) && True && o2act::ret(1, prepara_modello_exp_1()) && $o2exe->e();
+	} //|o2_fine_act|
+
+function prepara_modello_exp_1() {
+	$modello = '';
+$file = o2app_dir_templates().o2par(1);
+if (file_exists($file)) {
+   $tmp = new o2_dir(o2app_dir_tmp().'print_'.o2uid());
+   $tmp->crea();
+   $zip = new ZipArchive; 
+   $zip->open($file); 
+   $zip->extractTo($tmp); 
+   $zip->close();
+   if (file_exists($tmp.'content.xml')) {
+      $modello = $tmp.'content.xml';
+      } 
+   }
+if (!$modello) {
+   throw new o2_exception("Errore nella preparazione del modello di stampa", o2error_APP);
+   }
+return ($modello);
+	} //|o2_fine_exp|
+?>

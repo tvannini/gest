@@ -1,0 +1,316 @@
+<?php
+
+function contratti§§prg§_§var_def(&$task_prg§_§var) {
+	$task_prg§_§var->righe_vis = 1;
+	$task_prg§_§var->definisci("conferma", "_o2logical");
+	$task_prg§_§var->definisci("dettaglio", "_o2logical");
+		}
+
+function contratti§§contratti_def(&$task_contratti, $_o2viewalias = "") {
+	$task_contratti->righe_vis = 50;
+
+	$task_contratti->usa_file("contratti","contratti","codice",null,null);
+
+	$task_contratti->usa("codice","contratti","codice",null,null,null,null);
+	$task_contratti->usa("cliente","contratti","cliente",null,null,null,null);
+	$task_contratti->usa("data","contratti","data",null,null,null,null);
+	$task_contratti->usa("importo_mensile","contratti","importo_mensile",null,null,null,null);
+	$task_contratti->usa("data_fine","contratti","data_fine",null,null,null,null);
+}
+
+function contratti§§anagrafiche_def(&$task_anagrafiche, $_o2viewalias = "") {
+	$task_anagrafiche->righe_vis = 10;
+
+	$task_anagrafiche->usa_file("anagrafica","anagrafica","nominativo",null,null);
+
+	$task_anagrafiche->usa("codice","anagrafica","codice",null,null,null,null);
+	$task_anagrafiche->usa("nominativo","anagrafica","nominativo",null,null,null,null);
+	$task_anagrafiche->usa("localita","anagrafica","localita",null,null,null,null);
+	$task_anagrafiche->usa("provincia","anagrafica","provincia",null,null,null,null);
+	$task_anagrafiche->calcola("descrizione","txt_medio","contratti_exp_1()",null,null,null,null);
+}
+
+function contratti§§ultimo_codice_def(&$task_ultimo_codice, $_o2viewalias = "") {
+	$task_ultimo_codice->righe_vis = 10;
+
+	$task_ultimo_codice->usa_file("contratti","contratti","codice",null,null);
+
+	$task_ultimo_codice->usa("codice","contratti","codice",null,null,null,null);
+}
+function contratti§§contratti_detail_form_def(&$form_contratti_detail) {
+	$form_contratti_detail->x(300);
+	$form_contratti_detail->y(100);
+	$form_contratti_detail->larghezza(440);
+	$form_contratti_detail->altezza(300);
+	$form_contratti_detail->align_o("Center");
+	$form_contratti_detail->titolo("Contratti");
+	$form_contratti_detail->css_body(" open_body");
+	$form_contratti_detail->close_action("contratti_detail_off");
+	$ctrl_o2label2 = &$form_contratti_detail->ctrldef("o2label2", "label", "", "", "");
+		$ctrl_o2label2->x(30);
+		$ctrl_o2label2->y(60);
+		$ctrl_o2label2->larghezza(80);
+		$ctrl_o2label2->altezza(20);
+		$ctrl_o2label2->label("Codice:");
+	$ctrl_o2label3 = &$form_contratti_detail->ctrldef("o2label3", "label", "", "", "");
+		$ctrl_o2label3->x(30);
+		$ctrl_o2label3->y(80);
+		$ctrl_o2label3->larghezza(80);
+		$ctrl_o2label3->altezza(20);
+		$ctrl_o2label3->label("Data:");
+	$ctrl_o2label4 = &$form_contratti_detail->ctrldef("o2label4", "label", "", "", "");
+		$ctrl_o2label4->x(30);
+		$ctrl_o2label4->y(100);
+		$ctrl_o2label4->larghezza(80);
+		$ctrl_o2label4->altezza(20);
+		$ctrl_o2label4->label("Cliente:");
+	$ctrl_o2label5 = &$form_contratti_detail->ctrldef("o2label5", "label", "", "", "");
+		$ctrl_o2label5->x(30);
+		$ctrl_o2label5->y(120);
+		$ctrl_o2label5->larghezza(80);
+		$ctrl_o2label5->altezza(20);
+		$ctrl_o2label5->label("Importo:");
+	$ctrl_o2separator2 = &$form_contratti_detail->ctrldef("o2separator2", "line", "", "", "");
+		$ctrl_o2separator2->x(30);
+		$ctrl_o2separator2->y(200);
+		$ctrl_o2separator2->larghezza(380);
+		$ctrl_o2separator2->altezza(2);
+		$ctrl_o2separator2->expand("H");
+	$ctrl_o2label6 = &$form_contratti_detail->ctrldef("o2label6", "label", "", "", "");
+		$ctrl_o2label6->x(30);
+		$ctrl_o2label6->y(140);
+		$ctrl_o2label6->larghezza(80);
+		$ctrl_o2label6->altezza(20);
+		$ctrl_o2label6->label("Cessazione:");
+	$ctrl_o2label7 = &$form_contratti_detail->ctrldef("o2label7", "label", "", "", "");
+		$ctrl_o2label7->x(110);
+		$ctrl_o2label7->y(160);
+		$ctrl_o2label7->larghezza(300);
+		$ctrl_o2label7->altezza(20);
+		$ctrl_o2label7->visibile(contratti_exp_13());
+		$ctrl_o2label7->label("(Contratto escluso da scadenze)");
+	$ctrl_o2dbnavigator3 = &$form_contratti_detail->ctrldef("o2dbnavigator3", "navigator", "", "contratti", "");
+		$ctrl_o2dbnavigator3->x(0);
+		$ctrl_o2dbnavigator3->y(0);
+		$ctrl_o2dbnavigator3->larghezza(440);
+		$ctrl_o2dbnavigator3->altezza(32);
+		$ctrl_o2dbnavigator3->expand("H");
+		$ctrl_o2dbnavigator3->css_space(contratti_exp_6());
+		$ctrl_o2dbnavigator3->visible_detail(contratti_exp_9999());
+		$ctrl_o2dbnavigator3->visible_select(contratti_exp_9999());
+		$ctrl_o2dbnavigator3->act_new("contratti_insert");
+		$ctrl_o2dbnavigator3->act_save("contratti_post");
+		$ctrl_o2dbnavigator3->act_del("contratti_delete");
+		$ctrl_o2dbnavigator3->act_undo("contratti_undo");
+	$ctrl_o2edit4 = &$form_contratti_detail->ctrldef("o2edit4", "edit", "", "contratti", "codice");
+		$ctrl_o2edit4->x(110);
+		$ctrl_o2edit4->y(60);
+		$ctrl_o2edit4->larghezza(30);
+		$ctrl_o2edit4->altezza(20);
+		$ctrl_o2edit4->modificabile(contratti_exp_9999());
+	$ctrl_o2edit5 = &$form_contratti_detail->ctrldef("o2edit5", "edit", "", "contratti", "data");
+		$ctrl_o2edit5->x(110);
+		$ctrl_o2edit5->y(80);
+		$ctrl_o2edit5->larghezza(80);
+		$ctrl_o2edit5->altezza(20);
+	$ctrl_o2ListBox3 = &$form_contratti_detail->ctrldef("o2ListBox3", "listcombo", "", "contratti", "cliente");
+		$ctrl_o2ListBox3->x(110);
+		$ctrl_o2ListBox3->y(100);
+		$ctrl_o2ListBox3->larghezza(300);
+		$ctrl_o2ListBox3->altezza(20);
+		$ctrl_o2ListBox3->expand("H");
+		$ctrl_o2ListBox3->valori(o2_view2list("anagrafiche", "codice", "descrizione"));
+		$ctrl_o2ListBox3->righe(1);
+	$ctrl_o2edit6 = &$form_contratti_detail->ctrldef("o2edit6", "edit", "", "contratti", "importo_mensile");
+		$ctrl_o2edit6->x(110);
+		$ctrl_o2edit6->y(120);
+		$ctrl_o2edit6->larghezza(80);
+		$ctrl_o2edit6->altezza(20);
+	$ctrl_o2button2 = &$form_contratti_detail->ctrldef("o2button2", "button", "", "", "");
+		$ctrl_o2button2->x(320);
+		$ctrl_o2button2->y(220);
+		$ctrl_o2button2->larghezza(90);
+		$ctrl_o2button2->altezza(30);
+		$ctrl_o2button2->azione("contratti_detail_off");
+		$ctrl_o2button2->label("&Chiudi");
+	$ctrl_o2htmlarea2 = &$form_contratti_detail->ctrldef("o2htmlarea2", "htmlarea", "", "", "");
+		$ctrl_o2htmlarea2->x(60);
+		$ctrl_o2htmlarea2->y(220);
+		$ctrl_o2htmlarea2->larghezza(200);
+		$ctrl_o2htmlarea2->altezza(30);
+		$ctrl_o2htmlarea2->expand("H");
+	$ctrl_o2edit7 = &$form_contratti_detail->ctrldef("o2edit7", "edit", "", "contratti", "data_fine");
+		$ctrl_o2edit7->x(110);
+		$ctrl_o2edit7->y(140);
+		$ctrl_o2edit7->larghezza(80);
+		$ctrl_o2edit7->altezza(20);
+		$ctrl_o2edit7->on_change(contratti_exp_5());
+		}
+function contratti§§contratti_list_form_def(&$form_contratti_list) {
+	$form_contratti_list->x(300);
+	$form_contratti_list->y(100);
+	$form_contratti_list->larghezza(600);
+	$form_contratti_list->altezza(460);
+	$form_contratti_list->align_o("Center");
+	$form_contratti_list->titolo("Contratti");
+	$form_contratti_list->css_body(" open_body");
+	$form_contratti_list->close_action("contratti_detail_off");
+	$ctrl_o2table2 = &$form_contratti_list->ctrldef("o2table2", "tab", "", "contratti", "");
+		$ctrl_o2table2->x(0);
+		$ctrl_o2table2->y(30);
+		$ctrl_o2table2->larghezza(600);
+		$ctrl_o2table2->altezza(400);
+		$ctrl_o2table2->expand("B");
+		$ctrl_o2table2->modificabile(contratti_exp_9999());
+		$ctrl_o2table2->css_riga(contratti_exp_14());
+		$ctrl_o2table2->css_alt(contratti_exp_14());
+		$ctrl_o2table2->css_point(contratti_exp_14());
+	$ctrl_o2dbnavigator2 = &$form_contratti_list->ctrldef("o2dbnavigator2", "navigator", "", "contratti", "");
+		$ctrl_o2dbnavigator2->x(0);
+		$ctrl_o2dbnavigator2->y(0);
+		$ctrl_o2dbnavigator2->larghezza(600);
+		$ctrl_o2dbnavigator2->altezza(32);
+		$ctrl_o2dbnavigator2->expand("H");
+		$ctrl_o2dbnavigator2->css_space(contratti_exp_6());
+		$ctrl_o2dbnavigator2->visible_save(contratti_exp_9999());
+		$ctrl_o2dbnavigator2->visible_undo(contratti_exp_9999());
+		$ctrl_o2dbnavigator2->visible_select(contratti_exp_9());
+		$ctrl_o2dbnavigator2->act_new("contratti_insert");
+		$ctrl_o2dbnavigator2->act_del("contratti_delete");
+		$ctrl_o2dbnavigator2->act_detail("contratti_detail");
+		$ctrl_o2dbnavigator2->act_select("contratti_select");
+	$ctrl_o2edit2 = &$form_contratti_list->ctrldef("o2edit2", "edit", "o2table2", "contratti", "codice");
+		$ctrl_o2edit2->x(10);
+		$ctrl_o2edit2->y(10);
+		$ctrl_o2edit2->larghezza(30);
+		$ctrl_o2edit2->altezza(20);
+		$ctrl_o2edit2->info_padre(array("01", "01", "01", "#", False, "", False, "", "", "", ""));
+	$ctrl_o2edit3 = &$form_contratti_list->ctrldef("o2edit3", "edit", "o2table2", "contratti", "data");
+		$ctrl_o2edit3->x(50);
+		$ctrl_o2edit3->y(10);
+		$ctrl_o2edit3->larghezza(70);
+		$ctrl_o2edit3->altezza(20);
+		$ctrl_o2edit3->info_padre(array("01", "02", "02", "Data", False, "", False, "", "", "", ""));
+	$ctrl_o2ListBox2 = &$form_contratti_list->ctrldef("o2ListBox2", "listcombo", "o2table2", "contratti", "cliente");
+		$ctrl_o2ListBox2->x(130);
+		$ctrl_o2ListBox2->y(10);
+		$ctrl_o2ListBox2->larghezza(300);
+		$ctrl_o2ListBox2->altezza(20);
+		$ctrl_o2ListBox2->expand("H");
+		$ctrl_o2ListBox2->info_padre(array("01", "03", "03", "Cliente", False, "", False, "", "", "", ""));
+		$ctrl_o2ListBox2->valori(o2_view2list("anagrafiche", "codice", "descrizione"));
+		$ctrl_o2ListBox2->righe(1);
+		}
+
+function contratti§§contratti_delete_act(&$o2exe) {
+	$o2exe->s(1) && True && o2act::view("contratti", "C", "") && $o2exe->e();
+	} //|o2_fine_act|
+
+function contratti§§contratti_detail_act(&$o2exe) {
+	$o2exe->s(1) && True && o2act::set("prg§_§var", "dettaglio", contratti_exp_5()) && $o2exe->e();
+	} //|o2_fine_act|
+
+function contratti§§contratti_detail_off_act(&$o2exe) {
+	$o2exe->s(1) && (contratti_exp_12() || $o2exe->e()) && o2act::confirm("prg§_§var", "conferma", contratti_exp_10()) && $o2exe->e();
+	$o2exe->s(2) && (contratti_exp_11() || $o2exe->e()) && o2act::view("contratti", "S", "") && $o2exe->e();
+	$o2exe->s(3) && True && o2act::set("prg§_§var", "dettaglio", contratti_exp_9999()) && $o2exe->e();
+	} //|o2_fine_act|
+
+function contratti§§contratti_insert_act(&$o2exe) {
+	$o2exe->s(1) && True && o2act::view("contratti", "I", "") && $o2exe->e();
+	$o2exe->s(2) && True && o2act::view("ultimo_codice", "4", "") && $o2exe->e();
+	$o2exe->s(3) && True && o2act::set("contratti", "codice", contratti_exp_4()) && $o2exe->e();
+	$o2exe->s(4) && True && o2act::exe("contratti_detail", True, "") && $o2exe->e();
+	} //|o2_fine_act|
+
+function contratti§§contratti_post_act(&$o2exe) {
+	$o2exe->s(1) && True && o2act::view("contratti", "S", "") && $o2exe->e();
+	} //|o2_fine_act|
+
+function contratti§§contratti_select_act(&$o2exe) {
+	} //|o2_fine_act|
+
+function contratti§§contratti_undo_act(&$o2exe) {
+	$o2exe->s(1) && True && o2act::view("contratti", "A", "") && $o2exe->e();
+	} //|o2_fine_act|
+
+function contratti§§start_act(&$o2exe) {
+	$o2exe->s(1) && (contratti_exp_2() || $o2exe->e()) && o2act::view("contratti", "L", array("codice"=>contratti_exp_2())) && $o2exe->e();
+	$o2exe->s(2) && (contratti_exp_3() || $o2exe->e()) && o2act::exe("contratti_insert", True, "") && $o2exe->e();
+	} //|o2_fine_act|
+
+function contratti_exp_1() {
+	
+return (trim(o2val('anagrafiche','nominativo')).' - '.trim(o2val('anagrafiche','localita')).' ('.o2val('anagrafiche','provincia').')');
+	} //|o2_fine_exp|
+
+function contratti_exp_2() {
+	
+return (o2par(1));
+	} //|o2_fine_exp|
+
+function contratti_exp_3() {
+	
+return (!o2view_rec("contratti"));
+	} //|o2_fine_exp|
+
+function contratti_exp_4() {
+	
+return (o2val('ultimo_codice','codice') + 1);
+	} //|o2_fine_exp|
+
+function contratti_exp_5() {
+	
+return (true);
+	} //|o2_fine_exp|
+
+function contratti_exp_6() {
+	
+return ('nav_big');
+	} //|o2_fine_exp|
+
+function contratti_exp_7() {
+	
+return (!o2val('prg§_§var','dettaglio'));
+	} //|o2_fine_exp|
+
+function contratti_exp_8() {
+	
+return (o2val('prg§_§var','dettaglio'));
+	} //|o2_fine_exp|
+
+function contratti_exp_9() {
+	
+return (count(o2app_prg()) > 1);
+	} //|o2_fine_exp|
+
+function contratti_exp_10() {
+	
+return ("Il contratto è stato modificato.\nLo vuoi salvare?");
+	} //|o2_fine_exp|
+
+function contratti_exp_11() {
+	
+return (o2val('prg§_§var','conferma'));
+	} //|o2_fine_exp|
+
+function contratti_exp_12() {
+	
+return (o2view_mod("contratti"));
+	} //|o2_fine_exp|
+
+function contratti_exp_13() {
+	
+return (!o2zero('contratti','data_fine') && (o2val('contratti','data_fine') < date('Ymd')));
+	} //|o2_fine_exp|
+
+function contratti_exp_14() {
+	
+return ((!o2zero('contratti','data_fine') && (o2val('contratti','data_fine') < date('Ymd')) ? 'red_row' : null));
+	} //|o2_fine_exp|
+
+function contratti_exp_9999() {
+	
+return (false);
+	} //|o2_fine_exp|
+?>

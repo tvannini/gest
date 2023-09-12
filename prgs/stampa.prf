@@ -1,0 +1,37 @@
+<?php
+
+function stampa§§start_act(&$o2exe) {
+	$o2exe->s(1) && True && o2act::ret(1, stampa_exp_1()) && $o2exe->e();
+	} //|o2_fine_act|
+
+function stampa_exp_1() {
+	$model = new o2_fsitem(o2par(1));
+$dir   = str_replace('\\', '/', $model->path);
+$odt   = new o2_fsitem($dir.'../'.$model->nome.'-'.date('Ymd').'.odt');
+$odt   = $odt->nome_completo;
+$zip   = new ZipArchive();
+o2file_delete($odt);
+if (!$zip->open($odt, ZIPARCHIVE::CREATE)) {
+   return false;
+   }
+$files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($dir), RecursiveIteratorIterator::SELF_FIRST);
+foreach ($files as $file) {
+   $file = str_replace('\\', '/', $file);
+   // Ignore "." and ".." folders
+   if (in_array(substr($file, strrpos($file, '/') + 1), array('.', '..'))) {
+      continue;
+      }
+   $file = realpath($file);
+   if (is_dir($file) === true) {
+      $zip->addEmptyDir(str_replace($dir, '', $file.'/'));
+      }
+   elseif (is_file($file) === true) {
+      $zip->addFromString(str_replace($dir, '', $file), file_get_contents($file));
+      }
+   }   
+$zip->close();
+exec('export HOME=/tmp; unoconv "'.$odt.'"');
+$pdf = str_ireplace('.odt', '.pdf', $odt);
+return ($pdf);
+	} //|o2_fine_exp|
+?>

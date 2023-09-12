@@ -1,0 +1,35 @@
+<?php
+o2def::model("_o2alpha", "A", "C50", "");
+o2def::model("_o2date", "D", "-", "");
+o2def::model("_o2logical", "L", "", "");
+o2def::model("_o2number", "N", "8", "");
+o2def::model("_o2sid", "A", "C32", "");
+o2def::model("_o2structure", "S", "", "");
+o2def::model("_o2text", "A", "C10000000", "");
+o2def::model("_o2time", "O", ":", "");
+o2def::model("anno", "N", "4Z", "");
+o2def::model("cap", "N", "5Z", "");
+o2def::model("cod_anagrafica", "N", "3Z", "");
+o2def::model("cod_contratto", "N", "3Z", "");
+o2def::model("cod_destinatario", "A", "U7", "");
+o2def::model("cod_fattura", "N", "3Z", "");
+o2def::model("cod_fiscale", "A", "U6N2U1N2U1N3U1", "");
+o2def::model("cod_spesa", "N", "6Z", "");
+o2def::model("data_breve", "D", "-DMY2Z", "");
+o2def::model("data_estesa", "D", "-DMYZ", "");
+o2def::model("email", "A", "L50", "");
+o2def::model("importo", "N", "€ 8.2NT", "");
+o2def::model("importo_ef", "N", "8.2N", "");
+o2def::model("indirizzo", "A", "C50", "");
+o2def::model("localita", "A", "U1C49", "");
+o2def::model("n_civico", "A", "C5", "");
+o2def::model("nominativo", "A", "U1C49", "");
+o2def::model("num_documento", "N", "3Z", "");
+o2def::model("partita_iva", "A", "C16", "");
+o2def::model("provincia", "A", "U2", "");
+o2def::model("record_unico", "N", "1", "");
+o2def::model("rif_spesa", "A", "C255", "");
+o2def::model("txt_breve", "A", "C100", "");
+o2def::model("txt_lungo", "A", "C1000000", "");
+o2def::model("txt_medio", "A", "C255", "");
+?>

@@ -1,0 +1,167 @@
+<?php
+
+function produci_efattura§§prg§_§var_def(&$task_prg§_§var) {
+	$task_prg§_§var->righe_vis = 1;
+	$task_prg§_§var->definisci("file_xml", "txt_breve");
+	$task_prg§_§var->definisci("testo", "txt_lungo");
+		}
+
+function produci_efattura§§fatture_def(&$task_fatture, $_o2viewalias = "") {
+	$task_fatture->righe_vis = 10;
+
+	$task_fatture->usa_file("fatture","fatture","codice",null,null);
+
+	$task_fatture->usa("codice","fatture","codice","produci_efattura_exp_1()","produci_efattura_exp_1()",null,null);
+	$task_fatture->usa("num_documento","fatture","num_documento",null,null,null,null);
+	$task_fatture->usa("anno","fatture","anno",null,null,null,null);
+	$task_fatture->usa("cliente","fatture","cliente",null,null,null,null);
+	$task_fatture->usa("contratto","fatture","contratto",null,null,null,null);
+	$task_fatture->usa("data","fatture","data",null,null,null,null);
+	$task_fatture->usa("prestazione","fatture","prestazione",null,null,null,null);
+	$task_fatture->usa("importo","fatture","importo",null,null,null,null);
+}
+
+function produci_efattura§§cliente_def(&$task_cliente, $_o2viewalias = "") {
+	$task_cliente->righe_vis = 10;
+
+	$task_cliente->usa_file("anagrafica","anagrafica","codice",null,null);
+
+	$task_cliente->usa("codice","anagrafica","codice","produci_efattura_exp_2()","produci_efattura_exp_2()",null,null);
+	$task_cliente->usa("nominativo","anagrafica","nominativo",null,null,null,null);
+	$task_cliente->usa("indirizzo","anagrafica","indirizzo",null,null,null,null);
+	$task_cliente->usa("n_civico","anagrafica","n_civico",null,null,null,null);
+	$task_cliente->usa("cap","anagrafica","cap",null,null,null,null);
+	$task_cliente->usa("localita","anagrafica","localita",null,null,null,null);
+	$task_cliente->usa("provincia","anagrafica","provincia",null,null,null,null);
+	$task_cliente->usa("email","anagrafica","email",null,null,null,null);
+	$task_cliente->usa("pec","anagrafica","pec",null,null,null,null);
+	$task_cliente->usa("p_iva","anagrafica","p_iva",null,null,null,null);
+	$task_cliente->usa("cod_fiscale","anagrafica","cod_fiscale",null,null,null,null);
+	$task_cliente->usa("cod_destinatario","anagrafica","cod_destinatario",null,null,null,null);
+}
+
+function produci_efattura§§azienda_def(&$task_azienda, $_o2viewalias = "") {
+	$task_azienda->righe_vis = 10;
+
+	$task_azienda->usa_file("anagrafica","anagrafica","codice",null,null);
+
+	$task_azienda->usa("codice","anagrafica","codice","produci_efattura_exp_4()","produci_efattura_exp_4()",null,null);
+	$task_azienda->usa("nominativo","anagrafica","nominativo",null,null,null,null);
+	$task_azienda->usa("indirizzo","anagrafica","indirizzo",null,null,null,null);
+	$task_azienda->usa("n_civico","anagrafica","n_civico",null,null,null,null);
+	$task_azienda->usa("localita","anagrafica","localita",null,null,null,null);
+	$task_azienda->usa("provincia","anagrafica","provincia",null,null,null,null);
+	$task_azienda->usa("email","anagrafica","email",null,null,null,null);
+	$task_azienda->usa("pec","anagrafica","pec",null,null,null,null);
+	$task_azienda->usa("p_iva","anagrafica","p_iva",null,null,null,null);
+	$task_azienda->usa("cod_fiscale","anagrafica","cod_fiscale",null,null,null,null);
+}
+
+function produci_efattura§§parametri_def(&$task_parametri, $_o2viewalias = "") {
+	$task_parametri->righe_vis = 10;
+
+	$task_parametri->usa_file("parametri","parametri","record_unico",null,null);
+
+	$task_parametri->usa("record_unico","parametri","record_unico","produci_efattura_exp_3()","produci_efattura_exp_3()",null,null);
+	$task_parametri->usa("azienda","parametri","azienda",null,null,null,null);
+	$task_parametri->usa("modello_efattura","parametri","modello_efattura",null,null,null,null);
+}
+
+function produci_efattura§§start_act(&$o2exe) {
+//	$o2exe->s(1) && True && o2act::remark("Leggi codice modello") && $o2exe->e();
+	$o2exe->s(2) && (produci_efattura_exp_6() || $o2exe->e()) && o2act::set("prg§_§var", "testo", produci_efattura_exp_5()) && $o2exe->e();
+//	$o2exe->s(3) && True && o2act::remark("Esegui sostituzioni") && $o2exe->e();
+	$o2exe->s(4) && True && o2act::set("prg§_§var", "testo", produci_efattura_exp_7()) && $o2exe->e();
+	} //|o2_fine_act|
+
+function produci_efattura_exp_1() {
+	
+return (o2par(1));
+	} //|o2_fine_exp|
+
+function produci_efattura_exp_2() {
+	
+return (o2val('fatture','cliente'));
+	} //|o2_fine_exp|
+
+function produci_efattura_exp_3() {
+	
+return (1);
+	} //|o2_fine_exp|
+
+function produci_efattura_exp_4() {
+	
+return (o2val('parametri','azienda'));
+	} //|o2_fine_exp|
+
+function produci_efattura_exp_5() {
+	
+return (file_get_contents(o2app_dir_templates().o2val('parametri','modello_efattura')));
+	} //|o2_fine_exp|
+
+function produci_efattura_exp_6() {
+	
+return (!o2zero('parametri','modello_efattura'));
+	} //|o2_fine_exp|
+
+function produci_efattura_exp_7() {
+	/*
+ * Codice del template 
+ */
+$txt  = o2val('prg§_§var','testo');
+
+/* 
+ * Separatore date da picture 
+ */              
+$sep = substr(o2model_mask('data_estesa'), 0, 1);
+              
+/* 
+ * Prepara data documento 
+ */
+list($d_giorno, $d_mese, $d_anno) = explode($sep, o2format(o2val('fatture','data'), 'data_estesa'));
+$data = $d_anno.'-'.$d_mese.'-'.$d_giorno;
+
+/*
+ * Prepara data scadenza documento 
+ */
+list($s_giorno, $s_mese, $s_anno) = explode($sep, o2format(o2_mkdate(o2val('fatture','data'), 0, 1), 'data_estesa'));
+$scad = $s_anno.'-'.$s_mese.'-'.$s_giorno;
+
+/* 
+ * Elenco dei tag da sostituire 
+ */
+$tags = array('cliente_nome'      => strtoupper(o2val('cliente','nominativo')),
+              'cliente_indirizzo' => strtoupper(o2val('cliente','indirizzo')).' '.
+                                     strtoupper(o2val('cliente','n_civico')),
+              'cliente_cap'       => o2val('cliente','cap'),
+              'cliente_citta'     => strtoupper(o2val('cliente','localita')),
+              'cliente_prov'      => o2val('cliente','provincia'),
+              'cliente_piva'      => o2val('cliente','p_iva'),
+              'cliente_sdi'       => o2val('cliente','cod_destinatario'),
+              'doc_id'            => o2val('fatture','codice'),
+              'doc_numero'        => o2val('fatture','num_documento').'-'.
+                                     o2val('fatture','anno'),                                     
+              'doc_data'          => $data,
+              'prestazione'       => (o2zero('fatture','prestazione') ? 
+                                      'Assistenza, supporto e sviluppo software' : 
+                                      o2val('fatture','prestazione')),
+              'doc_importo'       => str_replace(',', '.', 
+                                                 o2format(o2val('fatture','importo'), 
+                                                          'importo_ef')),
+              'doc_scadenza'      => $scad);
+              
+/* 
+ * Sostituisci tag con valori 
+ */              
+foreach ($tags as $tag => $value) {
+   $txt = str_replace('{|'.$tag.'|}', iconv(o2app_encoding(), 'UTF-8', $value), $txt);
+   }
+   
+/* 
+ * Scrivi file risultato 
+ */
+o2file_delete(o2app_dir_tmp().'efatt.xml'); 
+file_put_contents(o2app_dir_tmp().'efatt.xml', $txt);
+return ($txt);
+	} //|o2_fine_exp|
+?>

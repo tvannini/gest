@@ -1,0 +1,364 @@
+<?php
+
+function parametri§§prg§_§var_def(&$task_prg§_§var) {
+	$task_prg§_§var->righe_vis = 1;
+	$task_prg§_§var->definisci("conferma", "_o2logical");
+	$task_prg§_§var->definisci("path_local", "txt_medio");
+		}
+
+function parametri§§parametri_def(&$task_parametri, $_o2viewalias = "") {
+	$task_parametri->righe_vis = 10;
+
+	$task_parametri->usa_file("parametri","parametri","record_unico",null,null);
+
+	$task_parametri->usa("record_unico","parametri","record_unico","parametri_exp_1()","parametri_exp_1()",null,null);
+	$task_parametri->usa("azienda","parametri","azienda",null,null,null,null);
+	$task_parametri->usa("fiscalista","parametri","fiscalista",null,null,null,null);
+	$task_parametri->usa("modello_efattura","parametri","modello_efattura",null,null,null,null);
+	$task_parametri->usa("modello_fattura","parametri","modello_fattura",null,null,null,null);
+	$task_parametri->usa("modello_prospetto","parametri","modello_prospetto",null,null,null,null);
+	$task_parametri->usa("archivio_fatture","parametri","archivio_fatture",null,null,null,null);
+	$task_parametri->usa("archivio_spese","parametri","archivio_spese",null,null,null,null);
+}
+
+function parametri§§anagrafiche_combo_def(&$task_anagrafiche_combo, $_o2viewalias = "") {
+	$task_anagrafiche_combo->righe_vis = 10;
+
+	$task_anagrafiche_combo->usa_file("anagrafica","anagrafica","nominativo",null,null);
+
+	$task_anagrafiche_combo->usa("codice","anagrafica","codice",null,null,null,null);
+	$task_anagrafiche_combo->usa("nominativo","anagrafica","nominativo",null,null,null,null);
+	$task_anagrafiche_combo->usa("localita","anagrafica","localita",null,null,null,null);
+	$task_anagrafiche_combo->usa("provincia","anagrafica","provincia",null,null,null,null);
+	$task_anagrafiche_combo->calcola("descrizione","txt_medio","parametri_exp_2()",null,null,null,null);
+}
+function parametri§§parametri_form_def(&$form_parametri) {
+	$form_parametri->x(230);
+	$form_parametri->y(150);
+	$form_parametri->larghezza(490);
+	$form_parametri->altezza(340);
+	$form_parametri->align_o("Center");
+	$form_parametri->titolo("Parametri");
+	$form_parametri->css_body(" open_body");
+	$form_parametri->close_action("chiudi");
+	$ctrl_o2label2 = &$form_parametri->ctrldef("o2label2", "label", "", "", "");
+		$ctrl_o2label2->x(30);
+		$ctrl_o2label2->y(60);
+		$ctrl_o2label2->larghezza(80);
+		$ctrl_o2label2->altezza(20);
+		$ctrl_o2label2->label("Azienda:");
+	$ctrl_o2label3 = &$form_parametri->ctrldef("o2label3", "label", "", "", "");
+		$ctrl_o2label3->x(30);
+		$ctrl_o2label3->y(100);
+		$ctrl_o2label3->larghezza(80);
+		$ctrl_o2label3->altezza(20);
+		$ctrl_o2label3->label("Fiscalista:");
+	$ctrl_o2label4 = &$form_parametri->ctrldef("o2label4", "label", "", "", "");
+		$ctrl_o2label4->x(30);
+		$ctrl_o2label4->y(140);
+		$ctrl_o2label4->larghezza(120);
+		$ctrl_o2label4->altezza(20);
+		$ctrl_o2label4->label("Mod. fattura (PDF):");
+	$ctrl_o2label5 = &$form_parametri->ctrldef("o2label5", "label", "", "", "");
+		$ctrl_o2label5->x(30);
+		$ctrl_o2label5->y(180);
+		$ctrl_o2label5->larghezza(80);
+		$ctrl_o2label5->altezza(20);
+		$ctrl_o2label5->label("Arc. fatture:");
+	$ctrl_o2separator2 = &$form_parametri->ctrldef("o2separator2", "line", "", "", "");
+		$ctrl_o2separator2->x(30);
+		$ctrl_o2separator2->y(240);
+		$ctrl_o2separator2->larghezza(420);
+		$ctrl_o2separator2->altezza(2);
+		$ctrl_o2separator2->expand("H");
+	$ctrl_o2label6 = &$form_parametri->ctrldef("o2label6", "label", "", "", "");
+		$ctrl_o2label6->x(30);
+		$ctrl_o2label6->y(200);
+		$ctrl_o2label6->larghezza(80);
+		$ctrl_o2label6->altezza(20);
+		$ctrl_o2label6->label("Arc. spese:");
+	$ctrl_o2label7 = &$form_parametri->ctrldef("o2label7", "label", "", "", "");
+		$ctrl_o2label7->x(30);
+		$ctrl_o2label7->y(160);
+		$ctrl_o2label7->larghezza(120);
+		$ctrl_o2label7->altezza(20);
+		$ctrl_o2label7->label("Mod. lista (PDF):");
+	$ctrl_o2label8 = &$form_parametri->ctrldef("o2label8", "label", "", "", "");
+		$ctrl_o2label8->x(30);
+		$ctrl_o2label8->y(120);
+		$ctrl_o2label8->larghezza(120);
+		$ctrl_o2label8->altezza(20);
+		$ctrl_o2label8->label("Mod. e-fattura (XML):");
+	$ctrl_o2dbnavigator2 = &$form_parametri->ctrldef("o2dbnavigator2", "navigator", "", "parametri", "");
+		$ctrl_o2dbnavigator2->x(0);
+		$ctrl_o2dbnavigator2->y(0);
+		$ctrl_o2dbnavigator2->larghezza(490);
+		$ctrl_o2dbnavigator2->altezza(32);
+		$ctrl_o2dbnavigator2->expand("H");
+		$ctrl_o2dbnavigator2->css_space(parametri_exp_4());
+		$ctrl_o2dbnavigator2->visible_nav(parametri_exp_9999());
+		$ctrl_o2dbnavigator2->visible_new(parametri_exp_9999());
+		$ctrl_o2dbnavigator2->visible_del(parametri_exp_9999());
+		$ctrl_o2dbnavigator2->visible_detail(parametri_exp_9999());
+		$ctrl_o2dbnavigator2->visible_select(parametri_exp_9999());
+		$ctrl_o2dbnavigator2->act_save("parametri_post");
+		$ctrl_o2dbnavigator2->act_undo("parametri_undo");
+	$ctrl_o2ListBox2 = &$form_parametri->ctrldef("o2ListBox2", "listcombo", "", "parametri", "azienda");
+		$ctrl_o2ListBox2->x(150);
+		$ctrl_o2ListBox2->y(60);
+		$ctrl_o2ListBox2->larghezza(300);
+		$ctrl_o2ListBox2->altezza(20);
+		$ctrl_o2ListBox2->expand("H");
+		$ctrl_o2ListBox2->valori(o2_view2list("anagrafiche_combo", "codice", "descrizione"));
+		$ctrl_o2ListBox2->righe(1);
+	$ctrl_o2ListBox3 = &$form_parametri->ctrldef("o2ListBox3", "listcombo", "", "parametri", "fiscalista");
+		$ctrl_o2ListBox3->x(150);
+		$ctrl_o2ListBox3->y(100);
+		$ctrl_o2ListBox3->larghezza(300);
+		$ctrl_o2ListBox3->altezza(20);
+		$ctrl_o2ListBox3->expand("H");
+		$ctrl_o2ListBox3->valori(o2_view2list("anagrafiche_combo", "codice", "descrizione"));
+		$ctrl_o2ListBox3->righe(1);
+	$ctrl_o2edit2 = &$form_parametri->ctrldef("o2edit2", "edit", "", "parametri", "modello_fattura");
+		$ctrl_o2edit2->x(150);
+		$ctrl_o2edit2->y(140);
+		$ctrl_o2edit2->larghezza(280);
+		$ctrl_o2edit2->altezza(20);
+		$ctrl_o2edit2->expand("H");
+	$ctrl_o2button2 = &$form_parametri->ctrldef("o2button2", "button", "", "", "");
+		$ctrl_o2button2->x(430);
+		$ctrl_o2button2->y(140);
+		$ctrl_o2button2->larghezza(20);
+		$ctrl_o2button2->altezza(20);
+		$ctrl_o2button2->azione("seleziona_modello_fattura");
+		$ctrl_o2button2->label("...");
+	$ctrl_o2edit3 = &$form_parametri->ctrldef("o2edit3", "edit", "", "parametri", "archivio_fatture");
+		$ctrl_o2edit3->x(150);
+		$ctrl_o2edit3->y(180);
+		$ctrl_o2edit3->larghezza(280);
+		$ctrl_o2edit3->altezza(20);
+		$ctrl_o2edit3->expand("H");
+	$ctrl_o2button3 = &$form_parametri->ctrldef("o2button3", "button", "", "", "");
+		$ctrl_o2button3->x(430);
+		$ctrl_o2button3->y(180);
+		$ctrl_o2button3->larghezza(20);
+		$ctrl_o2button3->altezza(20);
+		$ctrl_o2button3->azione("seleziona_archivio_fatture");
+		$ctrl_o2button3->label("...");
+	$ctrl_o2button4 = &$form_parametri->ctrldef("o2button4", "button", "", "", "");
+		$ctrl_o2button4->x(340);
+		$ctrl_o2button4->y(260);
+		$ctrl_o2button4->larghezza(90);
+		$ctrl_o2button4->altezza(30);
+		$ctrl_o2button4->azione("chiudi");
+		$ctrl_o2button4->label("&Chiudi");
+	$ctrl_o2edit4 = &$form_parametri->ctrldef("o2edit4", "edit", "", "parametri", "archivio_spese");
+		$ctrl_o2edit4->x(150);
+		$ctrl_o2edit4->y(200);
+		$ctrl_o2edit4->larghezza(280);
+		$ctrl_o2edit4->altezza(20);
+		$ctrl_o2edit4->expand("H");
+	$ctrl_o2button5 = &$form_parametri->ctrldef("o2button5", "button", "", "", "");
+		$ctrl_o2button5->x(430);
+		$ctrl_o2button5->y(200);
+		$ctrl_o2button5->larghezza(20);
+		$ctrl_o2button5->altezza(20);
+		$ctrl_o2button5->azione("seleziona_archivio_spese");
+		$ctrl_o2button5->label("...");
+	$ctrl_o2edit5 = &$form_parametri->ctrldef("o2edit5", "edit", "", "parametri", "modello_prospetto");
+		$ctrl_o2edit5->x(150);
+		$ctrl_o2edit5->y(160);
+		$ctrl_o2edit5->larghezza(280);
+		$ctrl_o2edit5->altezza(20);
+		$ctrl_o2edit5->expand("H");
+	$ctrl_o2button6 = &$form_parametri->ctrldef("o2button6", "button", "", "", "");
+		$ctrl_o2button6->x(430);
+		$ctrl_o2button6->y(160);
+		$ctrl_o2button6->larghezza(20);
+		$ctrl_o2button6->altezza(20);
+		$ctrl_o2button6->azione("seleziona_modello_lista");
+		$ctrl_o2button6->label("...");
+	$ctrl_o2edit6 = &$form_parametri->ctrldef("o2edit6", "edit", "", "parametri", "modello_efattura");
+		$ctrl_o2edit6->x(150);
+		$ctrl_o2edit6->y(120);
+		$ctrl_o2edit6->larghezza(280);
+		$ctrl_o2edit6->altezza(20);
+		$ctrl_o2edit6->expand("H");
+	$ctrl_o2button7 = &$form_parametri->ctrldef("o2button7", "button", "", "", "");
+		$ctrl_o2button7->x(430);
+		$ctrl_o2button7->y(120);
+		$ctrl_o2button7->larghezza(20);
+		$ctrl_o2button7->altezza(20);
+		$ctrl_o2button7->azione("seleziona_modello_efattura");
+		$ctrl_o2button7->label("...");
+	$ctrl_o2htmlarea2 = &$form_parametri->ctrldef("o2htmlarea2", "htmlarea", "", "", "");
+		$ctrl_o2htmlarea2->x(60);
+		$ctrl_o2htmlarea2->y(270);
+		$ctrl_o2htmlarea2->larghezza(200);
+		$ctrl_o2htmlarea2->altezza(20);
+		$ctrl_o2htmlarea2->expand("H");
+		}
+
+function parametri§§chiudi_act(&$o2exe) {
+	$o2exe->s(1) && (parametri_exp_19() || $o2exe->e()) && o2act::confirm("prg§_§var", "conferma", parametri_exp_17()) && $o2exe->e();
+	$o2exe->s(2) && (parametri_exp_18() || $o2exe->e()) && o2act::view("parametri", "S", "") && $o2exe->e();
+	$o2exe->s(3) && True && o2act::close()&& $o2exe->e();
+	} //|o2_fine_act|
+
+function parametri§§crea_record_unico_act(&$o2exe) {
+	$o2exe->s(1) && True && o2act::view("parametri", "I", "") && $o2exe->e();
+	$o2exe->s(2) && True && o2act::set("parametri", "record_unico", parametri_exp_1()) && $o2exe->e();
+	} //|o2_fine_act|
+
+function parametri§§parametri_post_act(&$o2exe) {
+	$o2exe->s(1) && True && o2act::view("parametri", "S", "") && $o2exe->e();
+	} //|o2_fine_act|
+
+function parametri§§parametri_undo_act(&$o2exe) {
+	$o2exe->s(1) && True && o2act::view("parametri", "A", "") && $o2exe->e();
+	} //|o2_fine_act|
+
+function parametri§§seleziona_archivio_fatture_act(&$o2exe) {
+	$o2exe->s(1) && True && o2act::set("prg§_§var", "path_local", parametri_exp_12()) && $o2exe->e();
+	$o2exe->s(2) && True && o2act::call(parametri_exp_5(), False, "prg§_§var§§path_local", parametri_exp_13(), parametri_exp_12(), parametri_exp_9999(), parametri_exp_8(), parametri_exp_9999(), parametri_exp_9999(), parametri_exp_9999(), parametri_exp_14()) && $o2exe->e();
+	$o2exe->s(3) && (parametri_exp_16() || $o2exe->e()) && o2act::set("parametri", "archivio_fatture", parametri_exp_15()) && $o2exe->e();
+	} //|o2_fine_act|
+
+function parametri§§seleziona_archivio_spese_act(&$o2exe) {
+	$o2exe->s(1) && True && o2act::set("prg§_§var", "path_local", parametri_exp_12()) && $o2exe->e();
+	$o2exe->s(2) && True && o2act::call(parametri_exp_5(), False, "prg§_§var§§path_local", parametri_exp_13(), parametri_exp_12(), parametri_exp_9999(), parametri_exp_8(), parametri_exp_9999(), parametri_exp_9999(), parametri_exp_9999(), parametri_exp_14()) && $o2exe->e();
+	$o2exe->s(3) && (parametri_exp_16() || $o2exe->e()) && o2act::set("parametri", "archivio_spese", parametri_exp_15()) && $o2exe->e();
+	} //|o2_fine_act|
+
+function parametri§§seleziona_modello_efattura_act(&$o2exe) {
+	$o2exe->s(1) && True && o2act::set("prg§_§var", "path_local", parametri_exp_6()) && $o2exe->e();
+	$o2exe->s(2) && True && o2act::call(parametri_exp_5(), False, "prg§_§var§§path_local", parametri_exp_20(), parametri_exp_6(), parametri_exp_8(), parametri_exp_9999(), parametri_exp_9999(), parametri_exp_8(), parametri_exp_9999(), parametri_exp_21()) && $o2exe->e();
+	$o2exe->s(3) && (parametri_exp_11() || $o2exe->e()) && o2act::set("parametri", "modello_efattura", parametri_exp_10()) && $o2exe->e();
+	} //|o2_fine_act|
+
+function parametri§§seleziona_modello_fattura_act(&$o2exe) {
+	$o2exe->s(1) && True && o2act::set("prg§_§var", "path_local", parametri_exp_6()) && $o2exe->e();
+	$o2exe->s(2) && True && o2act::call(parametri_exp_5(), False, "prg§_§var§§path_local", parametri_exp_7(), parametri_exp_6(), parametri_exp_8(), parametri_exp_9999(), parametri_exp_9999(), parametri_exp_8(), parametri_exp_9999(), parametri_exp_9()) && $o2exe->e();
+	$o2exe->s(3) && (parametri_exp_11() || $o2exe->e()) && o2act::set("parametri", "modello_fattura", parametri_exp_10()) && $o2exe->e();
+	} //|o2_fine_act|
+
+function parametri§§seleziona_modello_lista_act(&$o2exe) {
+	$o2exe->s(1) && True && o2act::set("prg§_§var", "path_local", parametri_exp_6()) && $o2exe->e();
+	$o2exe->s(2) && True && o2act::call(parametri_exp_5(), False, "prg§_§var§§path_local", parametri_exp_7(), parametri_exp_6(), parametri_exp_8(), parametri_exp_9999(), parametri_exp_9999(), parametri_exp_8(), parametri_exp_9999(), parametri_exp_9()) && $o2exe->e();
+	$o2exe->s(3) && (parametri_exp_11() || $o2exe->e()) && o2act::set("parametri", "modello_prospetto", parametri_exp_10()) && $o2exe->e();
+	} //|o2_fine_act|
+
+function parametri§§start_act(&$o2exe) {
+	$o2exe->s(1) && (parametri_exp_3() || $o2exe->e()) && o2act::exe("crea_record_unico", True, "") && $o2exe->e();
+	} //|o2_fine_act|
+
+function parametri_exp_1() {
+	
+return (1);
+	} //|o2_fine_exp|
+
+function parametri_exp_2() {
+	
+return (o2val('anagrafiche_combo','nominativo').' - '.o2val('anagrafiche_combo','localita').' ('.o2val('anagrafiche_combo','provincia').')');
+	} //|o2_fine_exp|
+
+function parametri_exp_3() {
+	
+return (!o2view_rec("parametri"));
+	} //|o2_fine_exp|
+
+function parametri_exp_4() {
+	
+return ('nav_big');
+	} //|o2_fine_exp|
+
+function parametri_exp_5() {
+	
+return ('tools/o2sys_fs_browser');
+	} //|o2_fine_exp|
+
+function parametri_exp_6() {
+	
+return (o2app_dir_templates());
+	} //|o2_fine_exp|
+
+function parametri_exp_7() {
+	
+return ('*.odt');
+	} //|o2_fine_exp|
+
+function parametri_exp_8() {
+	
+return (true);
+	} //|o2_fine_exp|
+
+function parametri_exp_9() {
+	
+return ('Modello fattura');
+	} //|o2_fine_exp|
+
+function parametri_exp_10() {
+	
+return (str_ireplace(o2app_dir_templates(), '', o2val('prg§_§var','path_local')));
+	} //|o2_fine_exp|
+
+function parametri_exp_11() {
+	
+return (is_file(o2val('prg§_§var','path_local')) && file_exists(o2val('prg§_§var','path_local')));
+	} //|o2_fine_exp|
+
+function parametri_exp_12() {
+	
+return (o2app_dir_home());
+	} //|o2_fine_exp|
+
+function parametri_exp_13() {
+	
+return ('*');
+	} //|o2_fine_exp|
+
+function parametri_exp_14() {
+	
+return ('Cartella archivio fatture');
+	} //|o2_fine_exp|
+
+function parametri_exp_15() {
+	
+return (str_ireplace(o2app_dir_home(), '', o2val('prg§_§var','path_local')));
+	} //|o2_fine_exp|
+
+function parametri_exp_16() {
+	
+return (is_dir(o2val('prg§_§var','path_local')) && file_exists(o2val('prg§_§var','path_local')));
+	} //|o2_fine_exp|
+
+function parametri_exp_17() {
+	
+return ("I parametri sono stati modificati.\nLi vuoi salvare?");
+	} //|o2_fine_exp|
+
+function parametri_exp_18() {
+	
+return (o2val('prg§_§var','conferma'));
+	} //|o2_fine_exp|
+
+function parametri_exp_19() {
+	
+return (o2view_mod("parametri"));
+	} //|o2_fine_exp|
+
+function parametri_exp_20() {
+	
+return ('*.xml');
+	} //|o2_fine_exp|
+
+function parametri_exp_21() {
+	
+return ('Modello fattura elettronica');
+	} //|o2_fine_exp|
+
+function parametri_exp_9999() {
+	
+return (false);
+	} //|o2_fine_exp|
+?>
